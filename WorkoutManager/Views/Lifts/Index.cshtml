@@ -1,0 +1,84 @@
+﻿@model WorkoutManager.Models.LiftTypeViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lifts</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="Lifts" asp-action="Index">
+    <p>
+        Lift Type: 
+        <select asp-for="LiftType" asp-items="Model.Types">
+            <option value="">All</option>
+        </select>
+
+        Name: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Lifts![0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lifts![0].Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lifts![0].Reps)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lifts![0].Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lifts![0].Notes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lifts![0].RPE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lifts![0].MainBodyPart)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Lifts!) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reps)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RPE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MainBodyPart)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
